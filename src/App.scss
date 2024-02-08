@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.todo-wrapper {
+  margin-top: 8rem;
+}
+
+.todo-form{
+  &__input { 
+    width: 400px;
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    outline: none;
+    color: #000000;
+    border: 1px solid #bbbbbb;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
+    &-edit {
+      margin-bottom: 1rem; 
+    }
+  }
+
+  &__btn {
+    padding: 0.55rem;
+    background: #8758ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
+    &:hover {
+      background-color: #a080f1;
+      transition: .3s;
+    }
+  }
+}
+
+.no-tasks {
+  font-size: 20px;
+  color: #7745f5;
+  margin-top: 20px;
+}
+
+.todos-container {
+  margin-top: 2rem;
+}
+
+.todos-quantity {
+  text-align: start;
+  margin-bottom: 0.8rem;
+  color: #8758ff;
+  font-size: 18px;
+}
+
+.todo-filter {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  align-items: flex-end;
+
+  &__sort-btn {
+    position: absolute;
+    top: 190px;
+    padding: 0.55rem;
+    background: #8758ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
+    &:hover{
+      background-color: #a080f1;
+      transition: .3s;
+    }
+    &-active{
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    }
+  }
+
+  &__item-btn{
+    width: 110px;
+    padding: 5px 10px;
+    background: #b9a4f8;
+    color: #000000;
+    border: none;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
+    &:hover{
+      background: #c0aff3;
+      color: #fff;
+      transition: .3s;
+    }
+    &-active{
+      color: #fff;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    }
+  }
+
+  &__item-list{
+    width: 110px;
+    opacity: 0;
+    transform: translateY(-10px);
+    position: absolute;
+    transition: 0.5s;
+    z-index: 0;
+    &.visible{
+      opacity: 1;
+      transform: translateY(0);
+      transition: 0.5s;
+      z-index: 1;
+    }
+  }
+
+  &__item-li{
+    background-color: #b9a4f8;
+    list-style-type: none;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover{
+      background-color: #ccb9fe;
+      color: #fff;
+      transition: .3s;
+    }
+  }
+}
+
+.todo {
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: #8758ff;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  &-info{
+    display: flex;
+    justify-content: space-between;
+    &__text{
+      width: 250px;
+      padding: 0 10px;
+      background-color: #fff;
+      color: #000000;
+      border-radius: 4px;
+      opacity: 0.7;
+    }
+  }
+
+  &-date{
+    margin-top: 8px;
+    text-align: left;
+    font-size: 10px;
+  }
+}
+
+.todo-select {
+  margin-left: 10px;
+  padding-left: 5px;
+  background-color: #fff;
+  color: #8758ff;
+  font-size: 14px;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  
+  &.not-started{
+    background-color: #fff;
+    color: #68656f;
+  }
+  &.at-work {
+    background-color: #fff;
+    color: #a78209;
+  }
+  &.done {
+    background-color: #fff;
+    color: #5ec956;
+  }
+}
+
+.not-started {
+  background: #a19ea9;
+  transition: 0.5s;
+}
+
+.at-work {
+  background: #fed038;
+  transition: 0.5s;
+}
+
+.done {
+  background: #5ec956;
+  transition: 0.5s;
+}
+
+.active {
+  display: flex;
+}
+
+.not-active {
+  display: none;
+}
+
+.error-message {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #dc4c33;
+  text-align: start;
+}
+
+.faPenToSquare{
+  cursor: pointer;
+}
+
+.faTrash{
+  cursor: pointer;
+  margin-left: 0.75rem;
+}
+
+.appearance-animation {
+  animation: .5s show ease;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px){
+  .todo-form__input{
+    width: 350px;
+  }
+  .todo-info__text{
+    width: 220px;
+  }
+}
+
+@media (max-width: 450px){
+  .todo-form__input{
+    width: 300px;
+  }
+  .todo {
+    padding: 0.75rem 0.5rem;;
+  }
+  .todo-info__text{
+    width: 200px;
+  }
+  .todo-select{
+    width: 100px;
+    padding: 0;
+    margin-left: 5px;
+  }
+  .faTrash{
+    margin-left: 0.35rem;
+  }
+}
+@media (max-width: 400px){
+  .todo-form__input{
+    width: 250px;
+  }
+  .todo-info__text{
+    width: 150px;
+    font-size: 14px;
+  }
+}
